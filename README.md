@@ -1,4 +1,1 @@
-# Frontend-Todo
-# Frontend-Todo
-# Frontend-Todo
-# frontend-time-tracking
+Created using React-Vite Redux-Toolkit SCSS
