@@ -1,0 +1,497 @@
+@use "../../colors" as *;
+
+$container-width: 40em;
+.comment-box {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+
+  .attribution {
+    font-size: 1rem;
+    text-align: center;
+    margin: 2em 0;
+  }
+  .attribution a {
+    color: hsl(228, 45%, 44%);
+  }
+
+  .container {
+    margin-top: 2em;
+    width: $container-width;
+
+    .replies {
+      position: relative;
+      margin-left: auto;
+      width: 90%;
+
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: -5%;
+        height: 100%;
+        width: 0.15em;
+        border-radius: 0.25em;
+        background-color: $LightGray;
+      }
+    }
+  }
+
+  .send {
+    margin-bottom: 2em;
+  }
+}
+
+.vote {
+  width: 2em;
+  padding: 0.5em;
+  background-color: $VerylightGray;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5em;
+
+  p {
+    margin-top: 0.5em;
+    color: $ModerateBlue;
+  }
+
+  .icon {
+    fill: #c5c6ef;
+    cursor: pointer;
+    transition: fill 0.3s;
+    &:hover {
+      fill: $ModerateBlue;
+    }
+  }
+}
+
+.disable {
+  pointer-events: none;
+}
+
+@mixin btn-main {
+  height: fit-content;
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.9em 1.8em;
+  border-radius: 0.5em;
+  background-color: $ModerateBlue;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $LightGrayishBlue;
+  }
+}
+
+@mixin meta-style {
+  display: flex;
+  flex-direction: column;
+  .msg {
+    margin-top: 1em;
+    color: $GrayishBlue;
+
+    span {
+      color: $ModerateBlue;
+      margin-right: 0.3em;
+      font-weight: 500;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    margin: 1em 0;
+    resize: none;
+    border: solid $DarkBlue 1px;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    caret-color: $ModerateBlue;
+    padding: 0.5em;
+    cursor: pointer;
+    resize: none;
+    scrollbar-width: none;
+    word-spacing: -0.2em;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
+  .update {
+    @include btn-main;
+    width: fit-content;
+    margin-left: auto;
+    padding: 0.8em 1.2em;
+  }
+}
+
+.comment {
+  margin: 1em 0;
+  background-color: $White;
+  display: flex;
+  gap: 1em;
+  padding: 1.5em;
+  border-radius: 0.5em;
+  position: relative;
+
+  .meta {
+    width: 100%;
+    @include meta-style;
+  }
+
+  .msg {
+    margin-top: 1em;
+    color: $GrayishBlue;
+  }
+}
+
+.comment-mix {
+  background-color: $White;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em;
+  gap: 0.5em;
+
+  .profile {
+    height: 2.5em;
+    width: 2.5em;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  textarea {
+    width: 100%;
+    resize: none;
+    border: solid #5d5d7f 1px;
+    outline: none;
+    color: $GrayishBlue;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    caret-color: $ModerateBlue;
+    padding: 0.5em;
+    cursor: pointer;
+    scrollbar-width: none;
+    word-spacing: -0.2em;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
+  button {
+    @include btn-main;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 0 1em;
+
+    .profile {
+      height: 2em;
+      width: 2em;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    h4 {
+      color: $DarkBlue;
+      font-weight: 500;
+      text-transform: lowercase;
+    }
+    span {
+      background-color: $ModerateBlue;
+      color: white;
+      font-weight: 500;
+      font-size: 0.8rem;
+      padding: 0.2em 0.5em;
+      border-radius: 0.25em;
+    }
+
+    p {
+      color: $GrayishBlue;
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0 1em;
+
+    @mixin btn {
+      font-size: 1rem;
+      font-weight: 500;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      cursor: pointer;
+      color: $ModerateBlue;
+      transition: color 0.3s;
+    }
+
+    .icon {
+      margin: 0 1em;
+      cursor: pointer;
+      transition: fill 0.3s;
+    }
+
+    button {
+      @include btn;
+    }
+
+    .edit {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5em;
+      cursor: pointer;
+
+      &:hover .icon {
+        fill: $LightGrayishBlue;
+      }
+      &:hover button {
+        color: $LightGrayishBlue;
+      }
+    }
+    .delete {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5em;
+      cursor: pointer;
+      button {
+        color: $SoftRed;
+      }
+
+      &:hover .icon {
+        fill: $Palred;
+      }
+      &:hover button {
+        color: $Palred;
+      }
+    }
+
+    .reply {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5em;
+      cursor: pointer;
+
+      &:hover .icon {
+        fill: $LightGrayishBlue;
+      }
+      &:hover button {
+        color: $LightGrayishBlue;
+      }
+    }
+  }
+}
+
+.replied-comment {
+  margin: 1em 0;
+  background-color: $White;
+  display: flex;
+  gap: 1em;
+  position: relative;
+
+  padding: 1.5em;
+  border-radius: 0.5em;
+
+  .meta {
+    width: 100%;
+    @include meta-style;
+  }
+}
+
+.inreply {
+  .profile {
+    height: 2.5em;
+    width: 2.8em;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  textarea {
+    width: 100%;
+  }
+}
+
+.outreply {
+  .profile {
+    height: 2.5em;
+    width: 2.5em;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.delete-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 99;
+  .box {
+    height: fit-content;
+    width: 22em;
+    border-radius: 0.5em;
+    background-color: $White;
+    padding: 2em;
+
+    h4 {
+      font-size: 1.4rem;
+      color: $DarkBlue;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 1em 0;
+      color: $GrayishBlue;
+    }
+
+    .btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        width: 48%;
+        border: 0;
+        outline: 0;
+        padding: 1em 2em;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 0.5em;
+        color: $White;
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+
+        &:first-child {
+          background-color: $GrayishBlue;
+        }
+
+        &:last-child {
+          background-color: $SoftRed;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width:600px) {
+  $container-width: 90vw !important;
+
+  .container {
+    width: $container-width;
+  }
+
+  .comment {
+    flex-wrap: wrap;
+    padding: 1em;
+
+    .votes {
+      order: 3;
+      .vote {
+        flex-direction: row;
+        width: 5em;
+
+        p {
+          margin-top: 0;
+        }
+
+        .icon {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 1.5em;
+      right: 1em;
+    }
+  }
+
+  .replies {
+    width: 95% !important;
+  }
+
+  .inreply,
+  .outreply {
+    .profile {
+      margin-top: 0.5em;
+      height: 2.2em;
+      width: 2.2em;
+    }
+  }
+
+  .replied-comment {
+    flex-wrap: wrap;
+    padding: 1em;
+    .votes {
+      order: 3;
+      .vote {
+        flex-direction: row;
+        width: 5em;
+
+        p {
+          margin-top: 0;
+        }
+
+        .icon {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 1.5em;
+      right: 1em;
+    }
+  }
+
+  .comment-mix {
+    flex-wrap: wrap;
+    padding: 1em;
+    gap: 1em;
+
+    textarea {
+      order: 1;
+      border: solid $LightGray 1px;
+    }
+    .profile {
+      order: 2;
+    }
+    button {
+      order: 3;
+    }
+  }
+}
