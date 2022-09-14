@@ -41,5 +41,8 @@ export const postedDate = (date) => {
     return `${Min} min ago`;
   }
 
-  return `${Sec} sec ago`;
+  if(Sec>0){
+    return `${Sec} sec ago`;
+  }
+  return "now"
 };
