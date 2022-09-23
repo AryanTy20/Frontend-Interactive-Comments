@@ -29,13 +29,13 @@ const Comments = () => {
   return (
     <>
       <div className="comment-box">
-        <div className="container">
+        <article className="container">
           {Data.comments?.map((item, i) => (
             <Comment data={item} outId={i} key={i} />
           ))}
-          <div className="send">
+          <article className="send">
             <CommentSend type="send" />
-          </div>
+          </article>
           <div className="attribution">
             Challenge by
             <a
@@ -46,7 +46,7 @@ const Comments = () => {
             </a>
             . Coded by <a href="https://github.com/AryanTy20">Aryan Tirkey</a>.
           </div>
-        </div>
+        </article>
       </div>
     </>
   );
