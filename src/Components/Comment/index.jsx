@@ -146,19 +146,29 @@ const CardHeader = ({
         </div>
         <div className="controls">
           {data?.user?.username == user && (
-            <button className="delete" onClick={() => setShowDelete(true)}>
+            <button
+              aria-label="comment delete"
+              className="delete"
+              onClick={() => setShowDelete(true)}
+            >
               <DeleteIcon />
               Delete
             </button>
           )}
           {data?.user?.username == user && (
-            <button className="edit" onClick={() => setUpdate((prev) => !prev)}>
+            <button
+              aria-label="comment edit"
+              onClick={() => setUpdate((prev) => !prev)}
+            >
               <EditIcon />
               Edit
             </button>
           )}
           {data?.user?.username !== user && (
-            <button className="reply" onClick={() => setReply((prev) => !prev)}>
+            <button
+              aria-label="comment reply"
+              onClick={() => setReply((prev) => !prev)}
+            >
               <ReplyIcon />
               Reply
             </button>
