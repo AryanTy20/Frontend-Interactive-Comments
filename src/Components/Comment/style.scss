@@ -81,7 +81,6 @@ $container-width: 40em;
 @mixin btn-main {
   height: fit-content;
   border: 0;
-  outline: 0;
   font-size: 1rem;
   font-weight: 700;
   padding: 0.9em 1.8em;
@@ -178,7 +177,6 @@ $container-width: 40em;
     width: 100%;
     resize: none;
     border: solid #5d5d7f 1px;
-    outline: none;
     color: $GrayishBlue;
     font-size: 1rem;
     border-radius: 0.5em;
