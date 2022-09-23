@@ -455,7 +455,10 @@ const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
             comment and can't be undone.
           </p>
           <div className="btns">
-            <button aria-label="cancel" onClick={() => showDelete(false)}>
+            <button
+              aria-label="delete cancel"
+              onClick={() => showDelete(false)}
+            >
               NO, CANCEL
             </button>
             <button
