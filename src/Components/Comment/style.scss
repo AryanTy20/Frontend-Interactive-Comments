@@ -58,11 +58,17 @@ $container-width: 40em;
     color: $ModerateBlue;
   }
 
-  .icon {
-    fill: #c5c6ef;
+  button {
+    border: none;
+    background-color: transparent;
     cursor: pointer;
-    transition: fill 0.3s;
-    &:hover {
+    .icon {
+      fill: #c5c6ef;
+      cursor: pointer;
+      transition: fill 0.3s;
+    }
+
+    &:hover .icon {
       fill: $ModerateBlue;
     }
   }
@@ -239,64 +245,42 @@ $container-width: 40em;
       font-size: 1rem;
       font-weight: 500;
       border: 0;
-      outline: 0;
       background-color: transparent;
       cursor: pointer;
       color: $ModerateBlue;
       transition: color 0.3s;
     }
 
-    .icon {
-      margin: 0 1em;
-      cursor: pointer;
-      transition: fill 0.3s;
-    }
-
     button {
       @include btn;
-    }
-
-    .edit {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0 0.5em;
-      cursor: pointer;
+
+      &:hover {
+        color: $LightGrayishBlue;
+      }
+
+      .icon {
+        margin: 0 1em;
+        cursor: pointer;
+        transition: fill 0.3s;
+      }
 
       &:hover .icon {
         fill: $LightGrayishBlue;
       }
-      &:hover button {
-        color: $LightGrayishBlue;
-      }
     }
+
     .delete {
-      display: flex;
-      align-items: center;
-      gap: 0 0.5em;
-      cursor: pointer;
-      button {
-        color: $SoftRed;
-      }
+      color: $SoftRed;
 
       &:hover .icon {
         fill: $Palred;
       }
-      &:hover button {
+      &:hover {
         color: $Palred;
-      }
-    }
-
-    .reply {
-      display: flex;
-      align-items: center;
-      gap: 0 0.5em;
-      cursor: pointer;
-
-      &:hover .icon {
-        fill: $LightGrayishBlue;
-      }
-      &:hover button {
-        color: $LightGrayishBlue;
       }
     }
   }
