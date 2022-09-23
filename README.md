@@ -42,11 +42,10 @@ Users should be able to:
 - SCSS custom properties
 - Flexbox
 - CSS Grid
-- Typescript
 - @redux-toolkit
 - desktop-first workflow
 - [React](https://reactjs.org/) - JS library
-- [ReactViteTS](https://vitejs.dev)
+- [ReactVite](https://vitejs.dev)
 
 ## Author
 
