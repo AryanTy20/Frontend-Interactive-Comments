@@ -316,14 +316,18 @@ const RepliedComment = ({ data, outId, inId }) => {
           />
 
           {update && (
-            <textarea
-              style={{
-                height: `${textareaHeight}px`,
-              }}
-              ref={textareaRef}
-              value={updatedComment}
-              onChange={(e) => setUpdatedComment(e.target.value)}
-            />
+            <div>
+              <label htmlFor="update-comment">Update comment</label>
+              <textarea
+                id="update-comment"
+                style={{
+                  height: `${textareaHeight}px`,
+                }}
+                ref={textareaRef}
+                value={updatedComment}
+                onChange={(e) => setUpdatedComment(e.target.value)}
+              />
+            </div>
           )}
           {!update && (
             <p className="msg">
@@ -333,6 +337,7 @@ const RepliedComment = ({ data, outId, inId }) => {
           )}
           {update && (
             <button
+              aria-label="update comment"
               className="update"
               onClick={() => {
                 dispatch(replyUpdate({ updatedComment, inId, outId }));
