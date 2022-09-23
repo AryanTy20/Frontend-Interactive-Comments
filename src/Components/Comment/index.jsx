@@ -90,13 +90,21 @@ const Vote = ({ score, inId, outId }) => {
   return (
     <>
       <div className="vote">
-        <div className={`icon ${disable ? "disable" : ""}`} onClick={increment}>
+        <button
+          aria-label="up vote"
+          className={`icon ${disable ? "disable" : ""}`}
+          onClick={increment}
+        >
           <PlusIcon />
-        </div>
+        </button>
         <p>{vote}</p>
-        <div className={`icon ${disable ? "disable" : ""}`} onClick={decrement}>
+        <button
+          aria-label="down vote"
+          className={`icon ${disable ? "disable" : ""}`}
+          onClick={decrement}
+        >
           <MinusIcon />
-        </div>
+        </button>
       </div>
     </>
   );
@@ -138,22 +146,22 @@ const CardHeader = ({
         </div>
         <div className="controls">
           {data?.user?.username == user && (
-            <div className="delete" onClick={() => setShowDelete(true)}>
+            <button className="delete" onClick={() => setShowDelete(true)}>
               <DeleteIcon />
-              <button>Delete</button>
-            </div>
+              Delete
+            </button>
           )}
           {data?.user?.username == user && (
-            <div className="edit" onClick={() => setUpdate((prev) => !prev)}>
+            <button className="edit" onClick={() => setUpdate((prev) => !prev)}>
               <EditIcon />
-              <button>Edit</button>
-            </div>
+              Edit
+            </button>
           )}
           {data?.user?.username !== user && (
-            <div className="reply" onClick={() => setReply((prev) => !prev)}>
+            <button className="reply" onClick={() => setReply((prev) => !prev)}>
               <ReplyIcon />
-              <button>Reply</button>
-            </div>
+              Reply
+            </button>
           )}
         </div>
       </div>
@@ -198,7 +206,7 @@ const Comment = ({ data, outId }) => {
 
   return (
     <>
-      <div className="comment">
+      <article className="comment">
         <div className="votes">
           <Vote score={data.score} outId={outId} />
         </div>
@@ -232,22 +240,22 @@ const Comment = ({ data, outId }) => {
             </button>
           )}
         </div>
-      </div>
+      </article>
       {reply && (
-        <div className="reply-to-msg">
+        <article className="reply-to-msg">
           <CommentSend
             outId={outId}
             setReply={setReply}
             replyingTo={data?.user?.username}
           />
-        </div>
+        </article>
       )}
       {data?.replies.length > 0 && (
-        <div className="replies">
+        <section className="replies">
           {data?.replies.map((item, i) => (
             <RepliedComment data={item} key={i} inId={i} outId={outId} />
           ))}
-        </div>
+        </section>
       )}
     </>
   );
@@ -283,7 +291,7 @@ const RepliedComment = ({ data, outId, inId }) => {
 
   return (
     <>
-      <div className="replied-comment">
+      <article className="replied-comment">
         <div className="votes">
           <Vote score={data.score} outId={outId} inId={inId} />
         </div>
@@ -325,7 +333,7 @@ const RepliedComment = ({ data, outId, inId }) => {
             </button>
           )}
         </div>
-      </div>
+      </article>
       {reply && (
         <CommentSend
           position="in"
@@ -390,11 +398,16 @@ const CommentSend = ({
 
   return (
     <>
-      <div
+      <article
         className={`comment-mix ${position == "out" ? "outreply" : "inreply"}`}
       >
         <div className="profile">
-          <img src={currentUser?.image.webp} alt="" />
+          <img
+            src={currentUser?.image.webp}
+            alt="profile pic"
+            height="100%"
+            width="100%"
+          />
         </div>
         <div className="input">
           <textarea
@@ -409,10 +422,13 @@ const CommentSend = ({
             onChange={(e) => setNewComment(e.target.value)}
           />
         </div>
-        <button onClick={type == "reply" ? postReply : postComment}>
+        <button
+          aria-label={type == "reply" ? "reply" : "send"}
+          onClick={type == "reply" ? postReply : postComment}
+        >
           {type == "reply" ? "REPLY" : "SEND"}
         </button>
-      </div>
+      </article>
     </>
   );
 };
@@ -421,7 +437,7 @@ const CommentSend = ({
 const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
   return (
     <>
-      <div className="delete-confirm">
+      <article className="delete-confirm">
         <div className="box">
           <h4>Delete comment</h4>
           <p>
@@ -429,8 +445,11 @@ const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
             comment and can't be undone.
           </p>
           <div className="btns">
-            <button onClick={() => showDelete(false)}>NO, CANCEL</button>
+            <button aria-label="cancel" onClick={() => showDelete(false)}>
+              NO, CANCEL
+            </button>
             <button
+              aria-label="confirm delete"
               onClick={() => {
                 setConfirmDelete(true);
                 showDelete(false);
@@ -440,7 +459,7 @@ const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
             </button>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 };
