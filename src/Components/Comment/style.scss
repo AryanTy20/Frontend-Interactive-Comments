@@ -474,9 +474,6 @@ $container-width: 40em;
     }
     button {
       order: 3;
-      padding: 1em 2em;
-      font-weight: 500;
-      font-size: 0.9rem;
     }
   }
 
@@ -487,7 +484,7 @@ $container-width: 40em;
 
       .btns {
         button {
-          padding: 1em 1.2em;
+          padding: 1em 2em;
           font-weight: 500;
           font-size: 0.9rem;
         }
