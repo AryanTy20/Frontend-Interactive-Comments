@@ -336,8 +336,7 @@ $container-width: 40em;
   place-items: center;
   z-index: 99;
   .box {
-    height: fit-content;
-    width: 22em;
+    max-width: 25em;
     border-radius: 0.5em;
     background-color: $White;
     padding: 2em;
@@ -357,11 +356,12 @@ $container-width: 40em;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5em;
 
       button {
-        width: 48%;
+        min-width: fit-content;
         border: 0;
-        outline: 0;
         padding: 1em 2em;
         font-weight: 700;
         cursor: pointer;
