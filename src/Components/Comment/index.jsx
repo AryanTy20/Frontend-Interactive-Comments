@@ -420,7 +420,11 @@ const CommentSend = ({
           />
         </div>
         <div className="input">
+          <label for="textarea">
+            {type == "reply" ? "reply comment field" : "post comment field"}
+          </label>
           <textarea
+            id="textarea"
             style={{
               height: `${textareaHeight}px`,
             }}
