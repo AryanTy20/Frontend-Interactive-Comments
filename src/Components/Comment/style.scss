@@ -476,4 +476,19 @@ $container-width: 40em;
       order: 3;
     }
   }
+
+  .delete-confirm {
+    .box {
+      width: 95vw;
+      overflow: hidden;
+
+      .btns {
+        button {
+          padding: 1em 1.2em;
+          font-weight: 500;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 }
