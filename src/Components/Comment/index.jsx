@@ -316,18 +316,14 @@ const RepliedComment = ({ data, outId, inId }) => {
           />
 
           {update && (
-            <div>
-              <label htmlFor="update-comment">Update comment</label>
-              <textarea
-                id="update-comment"
-                style={{
-                  height: `${textareaHeight}px`,
-                }}
-                ref={textareaRef}
-                value={updatedComment}
-                onChange={(e) => setUpdatedComment(e.target.value)}
-              />
-            </div>
+            <textarea
+              style={{
+                height: `${textareaHeight}px`,
+              }}
+              ref={textareaRef}
+              value={updatedComment}
+              onChange={(e) => setUpdatedComment(e.target.value)}
+            />
           )}
           {!update && (
             <p className="msg">
@@ -425,11 +421,7 @@ const CommentSend = ({
           />
         </div>
         <div className="input">
-          <label for="textarea">
-            {type == "reply" ? "reply comment field" : "post comment field"}
-          </label>
           <textarea
-            id="textarea"
             style={{
               height: `${textareaHeight}px`,
             }}
