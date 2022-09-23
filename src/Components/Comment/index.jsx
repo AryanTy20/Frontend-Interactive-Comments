@@ -9,6 +9,7 @@ import {
   replyComment,
   voteComment,
 } from "../../features/comment";
+import { motion } from "framer-motion";
 
 import { useState, useEffect, useRef } from "react";
 import "./style.scss";
@@ -21,6 +22,13 @@ import {
 } from "../../icons";
 
 import { postedDate } from "../../helper/postedtime";
+
+const hidden = {
+  opacity: 0,
+};
+const visible = {
+  opacity: 1,
+};
 
 //Main
 const Comments = () => {
@@ -216,7 +224,7 @@ const Comment = ({ data, outId }) => {
 
   return (
     <>
-      <article className="comment">
+      <motion.article initial={hidden} animate={visible} className="comment">
         <div className="votes">
           <Vote score={data.score} outId={outId} />
         </div>
@@ -250,15 +258,19 @@ const Comment = ({ data, outId }) => {
             </button>
           )}
         </div>
-      </article>
+      </motion.article>
       {reply && (
-        <article className="reply-to-msg">
+        <motion.article
+          initial={hidden}
+          animate={visible}
+          className="reply-to-msg"
+        >
           <CommentSend
             outId={outId}
             setReply={setReply}
             replyingTo={data?.user?.username}
           />
-        </article>
+        </motion.article>
       )}
       {data?.replies.length > 0 && (
         <section className="replies">
@@ -301,7 +313,11 @@ const RepliedComment = ({ data, outId, inId }) => {
 
   return (
     <>
-      <article className="replied-comment">
+      <motion.article
+        initial={hidden}
+        animate={visible}
+        className="replied-comment"
+      >
         <div className="votes">
           <Vote score={data.score} outId={outId} inId={inId} />
         </div>
@@ -344,7 +360,7 @@ const RepliedComment = ({ data, outId, inId }) => {
             </button>
           )}
         </div>
-      </article>
+      </motion.article>
       {reply && (
         <CommentSend
           position="in"
@@ -409,7 +425,9 @@ const CommentSend = ({
 
   return (
     <>
-      <article
+      <motion.article
+        initial={hidden}
+        animate={visible}
         className={`comment-mix ${position == "out" ? "outreply" : "inreply"}`}
       >
         <div className="profile">
@@ -439,7 +457,7 @@ const CommentSend = ({
         >
           {type == "reply" ? "REPLY" : "SEND"}
         </button>
-      </article>
+      </motion.article>
     </>
   );
 };
@@ -448,7 +466,11 @@ const CommentSend = ({
 const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
   return (
     <>
-      <article className="delete-confirm">
+      <motion.article
+        initial={hidden}
+        animate={visible}
+        className="delete-confirm"
+      >
         <div className="box">
           <h4>Delete comment</h4>
           <p>
@@ -473,7 +495,7 @@ const ConfirmDelete = ({ showDelete, setConfirmDelete }) => {
             </button>
           </div>
         </div>
-      </article>
+      </motion.article>
     </>
   );
 };
